@@ -1,8 +1,7 @@
 #!/bin/bash
 
 files=2electron_movement
-# frames=50
-frames=10
+frames=80
 
 step=0
 step2=0.15
@@ -48,8 +47,7 @@ echo "\documentclass[border=2mm]{standalone}
      \draw [green, thick, ->] (5*pi,0) -- (5*pi,$step)  node [right] {};
      \draw [] (5.2*pi,$step2) node [right] {\$e^{-}\$};
      \draw [opacity=$step3] (5.2*pi,0.15) node [right] {hole};
-     \draw [] (4.5*pi,-0.50) node [left] {IPA};
-   \end{axis}
+     \draw [] (4.6*pi,-0.6) node [left] {IPA};   \end{axis}
  \end{tikzpicture}
 
 \end{document}" >> "$files"_"$i".tex

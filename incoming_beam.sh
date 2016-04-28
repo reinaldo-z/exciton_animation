@@ -1,8 +1,7 @@
 #!/bin/bash
 
 files=1incoming_beam
-# frames=50
-frames=10
+frames=100
 step1=-1.999999999
 
 for (( i = 1; i <= $frames; i++ )); do
@@ -40,7 +39,7 @@ echo "\documentclass[border=2mm]{standalone}
                                node[right,pos=0.9,font=\footnotesize]{};
      \draw [red, thick, ->] (-2*pi,0) -- ($step1*pi,0) node [right] {};
      \draw [] (-1.5*pi,0.6) node [left] {$\overrightarrow{E}$};
-     \draw [] (4.5*pi,-0.50) node [left] {IPA};
+     \draw [] (4.6*pi,-0.6) node [left] {IPA};
    \end{axis}
  \end{tikzpicture}
 

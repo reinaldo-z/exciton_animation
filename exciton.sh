@@ -1,8 +1,7 @@
 #!/bin/bash
 
 files=3exciton
-# frames=50
-frames=10
+frames=20
 
 step1=1
 step2=0
@@ -47,8 +46,7 @@ echo "\documentclass[border=2mm]{standalone}
      \draw [] (5.2*pi,0.15) node [right] {hole};
      \shade[ball color=gray!50!white,opacity=1] (5*pi,1) circle (0.2cm); %% electron
      \draw [] (5.2*pi,0.9) node [right] {\$e^{-}\$};
-     \draw [] (4.5*pi,-0.50) node [left] {IPA};
-
+     \draw [] (4.6*pi,-0.6) node [left] {IPA};
 
      %%%% Green arrow banishing
      \draw [green, thick, ->, opacity=$step1] (5*pi,0) -- (5*pi,1)  node [right] {};
