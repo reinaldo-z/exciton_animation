@@ -1,7 +1,8 @@
 #!/bin/bash
 
 files=2electron_movement
-frames=80
+frames=10
+# frames=2
 
 step=0
 step2=0.15
@@ -50,16 +51,16 @@ echo "\documentclass[border=2mm]{standalone}
      \draw [] (4.6*pi,-0.6) node [left] {IPA};   \end{axis}
  \end{tikzpicture}
 
-\end{document}" >> "$files"_"$i".tex
+\end{document}" >> "$files"_`printf "%03d\n" $i`.tex
 
 step=`echo "$step+1.0/$frames" | bc -l`
 step2=`echo "$step2+0.75/$frames" | bc -l`
 step3=`echo "$step3+1.0/$frames" | bc -l`
 
 
-pdflatex "$files"_"$i".tex
-rmtex "$files"_"$i".
-rm "$files"_"$i".tex
+pdflatex "$files"_`printf "%03d\n" $i`.tex
+rmtex "$files"_`printf "%03d\n" $i`.
+rm "$files"_`printf "%03d\n" $i`.tex
 
 done
 

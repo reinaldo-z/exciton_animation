@@ -44,10 +44,10 @@ echo "\documentclass[border=2mm]{standalone}
  \end{tikzpicture}
 
 
-\end{document}" >> "$files"_"$i".tex
+\end{document}" >> "$files"_`printf "%03d\n" $i`.tex
 
-pdflatex "$files"_"$i".tex
-rmtex "$files"_"$i".
-rm "$files"_"$i".tex
+pdflatex "$files"_`printf "%03d\n" $i`.tex
+rmtex "$files"_`printf "%03d\n" $i`.
+rm "$files"_`printf "%03d\n" $i`.tex
 
 done
