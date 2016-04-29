@@ -2,9 +2,9 @@
 
 latex () {
     
-    pdflatex e-frame`printf "%03d\n" $i`.tex
-    rmtex e-frame`printf "%03d\n" $i`.
-    rm e-frame`printf "%03d\n" $i`.tex
+    pdflatex exc-frame`printf "%03d\n" $i`.tex
+    rmtex exc-frame`printf "%03d\n" $i`.
+    rm exc-frame`printf "%03d\n" $i`.tex
 
 }
 
@@ -40,7 +40,7 @@ echo "\documentclass[border=2mm]{standalone}
                                node[right,pos=0.9,font=\footnotesize]{};
      
      \shade[ball color=gray!50!white,opacity=1] (5*pi,0) circle (0.2cm);
-     \draw [] (5.2*pi,0.25) node [right] {\$e^{-}\$};
+     \draw [] (5.2*pi,0.15) node [right] {\$e^{-}\$};
      
      %%%% INCOMING BEAM FROM -2*pi TO 5*pi -> RANGE OF 7
      \addplot[domain=-2*pi:$step1*pi,samples=200,red,thick]{0.5*sin(deg(x))}
@@ -52,7 +52,7 @@ echo "\documentclass[border=2mm]{standalone}
  \end{tikzpicture}
 
 
-\end{document}" >> e-frame`printf "%03d\n" $i`.tex
+\end{document}" >> exc-frame`printf "%03d\n" $i`.tex
 
 latex
 
@@ -95,7 +95,7 @@ echo "\documentclass[border=2mm]{standalone}
     xtick=\empty,
     ytick=\empty,
     ]
-     %%%% Auxiliar code to have same e-frame size: objects in white color
+     %%%% Auxiliar code to have same frame size: objects in white color
      \addplot[domain=-2*pi:1*pi,samples=200,white,thick]{0.5*sin(deg(x))}
                                node[right,pos=0.9,font=\footnotesize]{};
      \draw [white, thick, ->] (-2.03*pi,0) -- (1*pi,0) node [right] {};
@@ -109,15 +109,17 @@ echo "\documentclass[border=2mm]{standalone}
 
      
      %%%% Electrom moves from (5*pi,0) to (5*pi,1)
-     % \shade[ball color=white!60!white,opacity=0.4] (5*pi,0) circle (0.2cm); %% hole
+     \shade[ball color=white!60!white,opacity=0.4] (5*pi,0) circle (0.2cm); %% hole
      \shade[ball color=gray!50!white,opacity=1] (5*pi,$step) circle (0.2cm); %% electron
-     \draw [green, thick, ->] (5*pi,0) -- (5*pi,$step)  node [right] {};
+     \draw [red, thick, ->] (5*pi,0) -- (5*pi,$step)  node [right] {};
      \draw [] (5.2*pi,$step2) node [right] {\$e^{-}\$};
-     % \draw [opacity=$step3] (5.2*pi,0.15) node [right] {hole}; 
+     \draw [opacity=$step3] (5.2*pi,0.15) node [right] {hole};
+     % \draw [opacity=$step4] (4.6*pi,-0.6) node [left] {IPA};   
+     \draw [opacity=$step3, red] (6.2*pi,0.5) node [right] {\$\hbar \omega$};
      \end{axis}
  \end{tikzpicture}
 
-\end{document}" >> e-frame`printf "%03d\n" $i`.tex
+\end{document}" >> exc-frame`printf "%03d\n" $i`.tex
 
 step=`echo "$step+1.0/$1" | bc -l`    ### used to create the green arrow
 step2=`echo "$step2+0.75/$1" | bc -l` ### used to momve "e-"
@@ -164,7 +166,7 @@ echo "\documentclass[border=2mm]{standalone}
     xtick=\empty,
     ytick=\empty,
     ]
-     %%%% Auxiliar code to have same e-frame size: objects in white color
+     %%%% Auxiliar code to have same frame size: objects in white color
      \addplot[domain=-2*pi:1*pi,samples=200,white,thick]{0.5*sin(deg(x))}
                                node[right,pos=0.9,font=\footnotesize]{};
      \draw [white, thick, ->] (-2.03*pi,0) -- (1*pi,0) node [right] {};
@@ -184,8 +186,9 @@ echo "\documentclass[border=2mm]{standalone}
      \draw [] (5.2*pi,0.9) node [right] {\$e^{-}\$};
      % \draw [opacity=$step1] (4.6*pi,-0.6) node [left] {IPA};
 
-     %%%% Green arrow banishing
-     \draw [green, thick, ->, opacity=$step1] (5*pi,0) -- (5*pi,1)  node [right] {};
+     %%%% Red arrow banishing
+     \draw [red, thick, ->, opacity=$step1] (5*pi,0) -- (5*pi,1)  node [right] {};
+     \draw [opacity=$step1, red] (6.2*pi,0.5) node [right] {\$\hbar \omega$};
      %%%% Blue arrows and text apearing
      \draw [blue, thick, ->, opacity=$step2] (5*pi,1) -- (5*pi,0.5)  node [right] {};
      \draw [blue, thick, ->, opacity=$step2] (5*pi,0) -- (5*pi,0.5)  node [right] {};
@@ -195,7 +198,7 @@ echo "\documentclass[border=2mm]{standalone}
    \end{axis}
  \end{tikzpicture}
 
-\end{document}" >> e-frame`printf "%03d\n" $i`.tex
+\end{document}" >> exc-frame`printf "%03d\n" $i`.tex
 
 step1=`echo "$step1-1.5/$1" | bc -l` ### used to vanish a draw
 step2=`echo "$step2+1.5/$1" | bc -l` ### used to show a draw
@@ -215,9 +218,9 @@ done
 # electron_movement 30
 # exciton 20
 
-incoming_beam 5
-electron_movement 4
-# exciton 3
+incoming_beam 40
+electron_movement 20
+exciton 10
 
 
 # 70 30 20
